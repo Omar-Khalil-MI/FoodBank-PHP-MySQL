@@ -2,7 +2,6 @@
 require_once "../View/HomeView.php";
 require_once "../Model/ProgramModel.php";
 require_once "../Model/DonorModel.php";
-require_once "../Model/pdo.php";
 
 class HomeController
 {

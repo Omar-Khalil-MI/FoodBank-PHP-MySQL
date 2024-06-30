@@ -29,34 +29,41 @@ class DonorView extends ViewAbst
                     <header>
                         <h1>Registration Form</h1>
                     </header>
+
                     <form action="../Controller/DonorController.php?cmd=signup" method="post" class="form">
                         <p id="error" style="color: red;">' . $error . '</p>
+                        
                         <div class = "input-box">
                             <label>Username:</label>
                             <input type="text" pattern="^[^\s]+$" id="username" name="username" 
                                 placeholder="Enter your username" required>
                         </div>
+                        
                         <div class = "input-box">
                             <label>Password:</label>
                             <input minlength="5" pattern="^[^\s]+$" type="password" id="password" name="password" 
                                 placeholder="Enter your password" required>
                             <span class="password-toggle-icon"><i class="fas fa-eye"></i></span>
                         </div>
+                        
                         <div class = "input-box">
                             <label>Email Address:</label>
                             <input type="email" id="email" name="email" placeholder="Enter your email address" required>
                         </div>   
+                        
                         <div class="column">
                             <div class = "input-box">
                                 <label>Phone Number:</label>
                                 <input type="text" id="phone" name="phone" placeholder="Enter your phone number" 
                                     pattern="\d*" minlength="11" maxlength="11" required>
                             </div> 
+
                             <div class = "input-box">
                                 <label>Birth Date:</label>
                                 <input type="date" id="birthdate" name="birthdate" required>
                             </div> 
                         </div>
+
                         <div class="gender-box">
                             <h3>Gender</h3>
                                 <div class="gender-option">
@@ -65,6 +72,7 @@ class DonorView extends ViewAbst
                                             value="' . GenderEnum::Male->value . '" required/>
                                         <label for="male">Male</label>
                                     </div> 
+
                                     <div class="gender">
                                         <input type="radio" id="female" name="gender" 
                                             value="' . GenderEnum::Female->value . '" required/>
@@ -72,6 +80,7 @@ class DonorView extends ViewAbst
                                     </div> 
                                 </div>    
                         </div>
+
                         <button>Submit</button>
                         <p class="login-link">Already have an account?
                             <a class="btn" href="../Controller/HomeController.php?cmd=login">Login</a>
@@ -170,6 +179,7 @@ class DonorView extends ViewAbst
                     <header>
                         <h1>My Account</h1>
                     </header>    
+                    
                     <form action="../Controller/DonorController.php?cmd=myacc" method="post" class="form">
         ');
         if ($error == "Success")
@@ -180,19 +190,23 @@ class DonorView extends ViewAbst
                         <label>Username: </label>
                         <input type="text" id="username" name="username" value="' . $donor->getUserName() . '" readonly>
                     </div>
+
                     <div class = "input-box">
                         <label>Birthdate: </label>
                         <input type="date" id="birthdate" name="birthdate" value="' . $donor->getBirthdate() . '">
                     </div>
+
                     <div class = "input-box">
                         <label>Email: </label>
                         <input type="email" id="email" name="email" value="' . $donor->getEmail() . '">
                     </div>
+
                     <div class = "input-box">
                         <label>Phone Number: </label>
                         <input type="text" pattern="\d*" minlength="11" maxlength="11" id="phone" name="phone" 
                             value="' . $donor->getPhoneNumber() . '">
                     </div>
+
                     <div class="gender-box">
                         <h3>Gender</h3>
                         <div class="gender-option">
@@ -203,7 +217,8 @@ class DonorView extends ViewAbst
             echo (' checked');
         echo ('/>
                                 <label for="male">Male</label>
-                            </div>   
+                            </div>
+
                             <div class="gender">
                                 <input type="radio" id="female" name="gender" value="' . GenderEnum::Female->value . '" required
             ');
@@ -214,6 +229,7 @@ class DonorView extends ViewAbst
                             </div>   
                         </div>    
                     </div>
+
                     <button>Update</button>
                     <a class="cancel-btn" href="../Controller/HomeController.php">Cancel</a>
                     </form>
@@ -256,6 +272,7 @@ class DonorView extends ViewAbst
                         </ul>
                     </nav>
                 </header>
+                
                 <div class="container">
                     <div class="object-display">
                         <table class="object-display-table">

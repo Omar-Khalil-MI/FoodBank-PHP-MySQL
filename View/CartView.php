@@ -7,7 +7,6 @@ class CartView extends ViewAbst
 {
     function ShowCart()
     {
-        $total = 0;
         echo ('
             <!DOCTYPE html>
             <html lang="en">
@@ -49,6 +48,7 @@ class CartView extends ViewAbst
                             </tr></thead>
             ');
             foreach ($_SESSION['cart'] as $item => $quantity) {
+                $total = 0;
                 $itemModel = new ItemModel();
                 $programModel = new ProgramModel();
                 $itemModel->getById($item);
@@ -72,6 +72,7 @@ class CartView extends ViewAbst
             echo ('
                         </table>
                         <div class="message">Grand Total: ' . $total . 'EGP</div>
+                        
                         <form id="cart-form" action="../Controller/PaymentController.php?cmd=paymentoptions" method="post">
                             <h1 style="font-size: 20px">Increase My Impact</h1>
                             <p style="font-size: 14px">

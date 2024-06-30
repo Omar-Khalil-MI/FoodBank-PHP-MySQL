@@ -1,7 +1,6 @@
 <?php
 require_once "../Model/ItemModel.php";
 require_once "../View/ItemView.php";
-require_once "../Model/ProgramModel.php";
 
 class ItemController
 {
@@ -35,7 +34,6 @@ class ItemController
         $stmt = ItemModel::view_all();
         $this->itemView->ShowItemsTable($stmt);
     }
-
     public function editController()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {

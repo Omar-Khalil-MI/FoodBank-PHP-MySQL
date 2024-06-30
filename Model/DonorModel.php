@@ -12,8 +12,15 @@ class DonorModel extends ModifiableAbstModel
     private $phone_number;
     private $gender;
 
-    public function __construct($username = "", $birthdate = "", $email = "", $password = "", $phone_number = "", $gender = 0, $id = 0)
-    {
+    public function __construct(
+        $username = "",
+        $birthdate = "",
+        $email = "",
+        $password = "",
+        $phone_number = "",
+        $gender = 0,
+        $id = 0
+    ) {
         $this->username = $username;
         $this->birthdate = $birthdate;
         $this->email = $email;
@@ -70,14 +77,12 @@ class DonorModel extends ModifiableAbstModel
     }
     public static function remove($id)
     {
-
         $sql = "DELETE FROM " . self::table . " WHERE id = :id";
         $stmt = Singleton::getpdo()->prepare($sql);
         return $stmt->execute(['id' => $id]);
     }
     public static function view_all()
     {
-
         $stmt = Singleton::getpdo()->query("SELECT * FROM " . self::table);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

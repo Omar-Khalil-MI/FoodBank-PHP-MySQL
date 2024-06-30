@@ -1,7 +1,6 @@
 <?php
 require_once "pdo.php";
 require_once "ModifiableAbstModel.php";
-require_once "ItemModel.php";
 
 class ProgramModel extends ModifiableAbstModel
 {

@@ -33,6 +33,7 @@ class DonationDetailsView extends ViewAbst
                             </ul>
                         </nav>
                 </header>
+                
                 <div class="container">
                     <div class="object-display">
                         <table class="object-display-table">

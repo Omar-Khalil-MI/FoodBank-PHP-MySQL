@@ -46,6 +46,7 @@ class HomeView extends ViewAbst
                         </ul>
                     </nav>
                 </header>
+
                 <div class="container">');
         if ($logged)
             echo ('<h1>Welcome Back ' . $username . '!</h1><br/>');
@@ -92,6 +93,7 @@ class HomeView extends ViewAbst
                     <header>
                         <h1>Login</h1>
                     </header>
+                    
                     <form action="../Controller/HomeController.php" method="POST" class="form">
         ');
         if ($error == "Success")
@@ -103,12 +105,14 @@ class HomeView extends ViewAbst
                             <input type="text" pattern="^[^\s]+$" id="username" name="username" 
                                 placeholder="Enter your username" required>
                         </div>
+
                         <div class = "input-box">
                             <label>Password:</label>
                             <input type="password" pattern="^[^\s]+$" id="password" name="password" 
                                 placeholder="Enter your password" required>
                             <span class="password-toggle-icon"><i class="fas fa-eye"></i></span>
                         </div>
+                        
                         <button>Login</button>
                         <a class="cancel-btn" href="../Controller/HomeController.php">Cancel</a>
                         <p class="login-link">First Time?

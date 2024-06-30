@@ -53,6 +53,7 @@ class DistributorView extends ViewAbst
                             </div>
                         </div>
                     </div>
+                    
                     <div class="object-display">
                         <table class="object-display-table">
                             <thead><tr>

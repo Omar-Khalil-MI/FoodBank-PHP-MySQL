@@ -1,7 +1,6 @@
 <?php
 require_once "../Model/ProgramModel.php";
 require_once "../View/ProgramView.php";
-require_once "../Model/pdo.php";
 require_once "../Model/ItemModel.php";
 
 class ProgramController
@@ -35,7 +34,6 @@ class ProgramController
         $stmt = ProgramModel::view_all();
         $this->ProgView->ShowProgramsTable($stmt);
     }
-
     public function editController()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {

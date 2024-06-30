@@ -198,6 +198,7 @@ class ProgramView extends ViewAbst
                         </div>
                     </div>
                 </div>
+                
                 <footer>
                     <p>© 2024 Food Bank</p>
                 </footer>

@@ -1,6 +1,5 @@
 <?php
 require_once "../View/CartView.php";
-require_once "../Model/pdo.php";
 session_start();
 
 class CartController
@@ -38,7 +37,6 @@ class CartController
 }
 
 $controller = new CartController();
-$cartView = new CartView();
 
 if (!isset($_GET['cmd']))
     $controller->showCartController();

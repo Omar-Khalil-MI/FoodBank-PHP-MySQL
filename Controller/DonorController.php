@@ -80,13 +80,15 @@ if (!isset($_GET['cmd']))
 else {
   $command = $_GET['cmd'];
   if ($command == 'signup') {
+
     if ($_SERVER["REQUEST_METHOD"] == "POST")
       $controller->signupValid();
     else $controller->signup();
   } else if ($command == 'myacc') {
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST")
       $controller->updateAccount($_SESSION['user_id']);
-    } else $controller->myaccount($_SESSION['user_id']);
+    else $controller->myaccount($_SESSION['user_id']);
   } else if ($command == 'viewdonations')
     $controller->view_donations();
 }

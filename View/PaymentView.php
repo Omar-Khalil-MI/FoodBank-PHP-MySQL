@@ -50,6 +50,7 @@ class PaymentView extends ViewAbst
                         </div>
                     </div>
                 </div>
+                
                 <footer>
                     <p>© 2024 Food Bank</p>
                 </footer>

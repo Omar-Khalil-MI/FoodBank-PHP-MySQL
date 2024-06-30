@@ -1,5 +1,4 @@
 <?php
-
 require_once "../View/ViewAbst.php";
 require_once "../Model/ProgramModel.php";
 
@@ -64,6 +63,7 @@ class ItemView extends ViewAbst
                             </div>
                         </div>
                     </div>
+                    
                     <div class="object-display">
                     <table class="object-display-table">
                     <thead><tr>
