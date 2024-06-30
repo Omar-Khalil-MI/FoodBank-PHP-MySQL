@@ -1,0 +1,209 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+:root {
+  --green: #27ae60;
+  --black: #333;
+  --white: #fff;
+  --bg-color: #eee;
+  --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  --border: 0.1rem solid var(--black);
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  text-transform: capitalize;
+}
+
+header {
+  background-color: #329443;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+footer {
+  background-color: #329443;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+}
+
+li {
+  display: inline-block;
+  width: auto;
+  cursor: pointer;
+  border-radius: 5rem;
+  margin-top: 1rem;
+  margin-bottom: 0.3rem;
+  margin-right: 0.4rem;
+  font-size: small;
+  padding: 0.2rem 0.7rem;
+  background: rgb(139, 139, 139);
+  color: rgb(245, 245, 245);
+  text-align: center;
+}
+
+.btn {
+  display: inline-flexbox;
+  width: 30%;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  font-size: 1.7rem;
+  padding: 1rem 3rem;
+  background: #329443;
+  color: var(--white);
+  text-align: center;
+}
+
+.btn:hover {
+  background: #1f6635;
+  color: white;
+}
+
+.btn:last-child {
+  background: rgb(233, 33, 73);
+}
+
+.btn:last-child:hover {
+  background-color: rgb(141, 6, 33);
+}
+
+.container {
+  width: 75%;
+  padding: 3rem;
+  margin: 0 auto;
+}
+
+.admin-object-form-container.centered {
+  margin: auto;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-object-form-container form {
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  background: var(--bg-color);
+}
+
+.admin-object-form-container form h1 {
+  color: var(--black);
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+}
+
+.admin-object-form-container form h2 {
+  color: var(--black);
+  margin-bottom: 1.3rem;
+  text-align: left;
+  font-size: 2rem;
+}
+
+.admin-object-form-container form h3 {
+  color: var(--black);
+  margin-bottom: 2.3rem;
+  font-size: 1.8rem;
+}
+
+.admin-object-form-container form .box {
+  width: 100%;
+  border-radius: 0.5rem;
+  padding: 1.2rem 1.5rem;
+  font-size: 1.7rem;
+  margin: 1rem 0;
+  background: var(--white);
+  text-transform: none;
+}
+
+.object-display {
+  margin: 2rem 0;
+}
+
+.object-display .object-display-table {
+  width: 100%;
+  text-align: center;
+}
+
+.object-display .object-display-table thead {
+  background: var(--bg-color);
+}
+
+.object-display .object-display-table th {
+  padding: 1rem;
+  font-size: 2rem;
+}
+
+.object-display .object-display-table td {
+  padding: 1rem;
+  font-size: 2rem;
+  border-bottom: var(--border);
+}
+
+.object-display .object-display-table .btn:first-child {
+  margin-top: 0;
+}
+
+@media (max-width: 991px) {
+  html {
+    font-size: 55%;
+  }
+}
+
+@media (max-width: 768px) {
+  .object-display {
+    overflow-y: scroll;
+  }
+
+  .object-display .object-display-table {
+    width: 80rem;
+  }
+}
+
+@media (max-width: 450px) {
+  html {
+    font-size: 50%;
+  }
+}
+
+form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 6px;
+  font-size: 1.5rem;
+}
+
+form input[type="number"] {
+  display: block;
+  width: 10%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form select {
+  width: max-content;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

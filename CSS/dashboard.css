@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+:root {
+  --green: #27ae60;
+  --black: #333;
+  --white: #fff;
+  --bg-color: #eee;
+  --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  --border: 0.1rem solid var(--black);
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  text-transform: capitalize;
+}
+
+header {
+  background-color: #329443;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+footer {
+  background-color: #329443;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+html {
+  font-size: 67%;
+  overflow-x: hidden;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  font-size: 1.7rem;
+  padding: 1rem 3rem;
+  background: var(--green);
+  color: var(--white);
+  text-align: center;
+}
+
+.btn:hover {
+  background: var(--black);
+}
+
+.message {
+  display: block;
+  background: var(--bg-color);
+  padding: 1.5rem 1rem;
+  font-size: 2rem;
+  color: var(--black);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* General styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+/* Main content styles */
+.row {
+  display: flex;
+  justify-content: space-around;
+  margin: 30px;
+}
+
+/* Role card styles */
+.role {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 31%;
+  margin-bottom: 35px;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-size: 12.8px;
+  font-style: italic;
+}
+
+.role img {
+  width: 90%;
+  aspect-ratio: 1.2 / 1;
+  border-radius: 4x;
+  transition: transform 0.3s ease;
+}
+
+.role img:hover {
+  transform: scale(1.05);
+}
+
+.role a {
+  display: block;
+  margin-top: 15px;
+  padding: 8px 16px;
+  background-color: #329443;
+  color: white;
+  border-radius: 100px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.role a:hover {
+  background-color: #297b3a;
+}
+
+.admin-object-form-container.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
