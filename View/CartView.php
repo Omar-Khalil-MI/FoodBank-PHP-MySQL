@@ -47,8 +47,8 @@ class CartView extends ViewAbst
                                 <th>Action</th>
                             </tr></thead>
             ');
+            $total = 0;
             foreach ($_SESSION['cart'] as $item => $quantity) {
-                $total = 0;
                 $itemModel = new ItemModel();
                 $programModel = new ProgramModel();
                 $itemModel->getById($item);
