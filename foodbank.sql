@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 30, 2024 at 03:11 AM
+-- Generation Time: Dec 22, 2025 at 08:03 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `foodbank`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `username` varchar(128) NOT NULL,
+  `password` varchar(128) NOT NULL,
+  `role` varchar(50) NOT NULL DEFAULT 'admin'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `username`, `password`, `role`) VALUES
+(1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin'),
+(2, 'ware', '9c9b056bc0c11c3fb0d74085188e2499ec7e8c18', 'warehouse'),
+(3, 'prog', '7abf1cbd0bb673b82b54ad0a008667d99058c734', 'program'),
+(4, 'proc', 'fb0aff6ba5e1940db2ce5fd06d988760aa10ffe4', 'procurement');
 
 -- --------------------------------------------------------
 
@@ -208,6 +231,12 @@ INSERT INTO `supplier` (`id`, `name`, `address`) VALUES
 --
 
 --
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `distributor`
 --
 ALTER TABLE `distributor`
@@ -256,6 +285,12 @@ ALTER TABLE `supplier`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `distributor`

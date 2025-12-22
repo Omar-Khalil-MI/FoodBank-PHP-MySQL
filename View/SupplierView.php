@@ -32,7 +32,8 @@ class SupplierView extends ViewAbst
                     <h1>Supplier Database</h1>
                     <nav>
                         <ul>
-                            <a href="../index.php"><li>Dashboard</li></a>
+                            <a href="../Controller/AdminController.php"><li>Dashboard</li></a>
+                            <a href="../Controller/AdminController.php?cmd=logout"><li>Logout</li></a>
                         </ul>
                     </nav>
                 </header>

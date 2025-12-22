@@ -1,4 +1,5 @@
 <?php
+require_once "AuthCheck.php";
 require_once "../Model/SupplierModel.php";
 require_once "../View/SupplierView.php";
 
@@ -54,6 +55,11 @@ class SupplierController
 }
 
 $controller = new SupplierController();
+
+if (!isset($_SESSION))
+    session_start();
+AuthCheck::requireAdminLogin();
+AuthCheck::requireAdminRole('SupplierController');
 
 if (!isset($_GET['cmd']))
     $controller->view_allController();

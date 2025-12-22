@@ -33,7 +33,8 @@ class ProgramView extends ViewAbst
                     <h1>Program Database</h1>
                     <nav>
                         <ul>
-                            <a href="../index.php"><li>Dashboard</li></a>
+                            <a href="../Controller/AdminController.php"><li>Dashboard</li></a>
+                            <a href="../Controller/AdminController.php?cmd=logout"><li>Logout</li></a>
                         </ul>
                     </nav>
                 </header>
@@ -142,7 +143,8 @@ class ProgramView extends ViewAbst
     }
     function ShowProgramToUser($program, $stmt)
     {
-        session_start();
+        // if (!isset($_SESSION))
+        //     session_start();
         echo ('
             <html lang="en">
             

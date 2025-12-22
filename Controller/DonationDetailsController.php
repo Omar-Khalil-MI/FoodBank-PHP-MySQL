@@ -2,6 +2,7 @@
 require_once "../Model/DonationDetailsModel.php";
 require_once "../Model/DonationModel.php";
 require_once "../View/DonationDetailsView.php";
+require_once "AuthCheck.php";
 
 class DonationDetailsController
 {
@@ -24,10 +25,19 @@ class DonationDetailsController
 
 $controller = new DonationDetailsController();
 
+if (!isset($_SESSION))
+    session_start();
+
 if (!isset($_GET['cmd'])) {
-    $donationkey = $_GET['id'];
+    AuthCheck::requireAdminLogin();
+    AuthCheck::requireAdminRole('DonationDetailsController');
+    if (!isset($_GET['id']))
+        $donationkey = -1;
+    else
+        $donationkey = $_GET['id'];
     $controller->viewController($donationkey);
 } else {
+    AuthCheck::requireDonorLogin();
     $command = $_GET['cmd'];
     if ($command == "receipt")
         $controller->receiptController();

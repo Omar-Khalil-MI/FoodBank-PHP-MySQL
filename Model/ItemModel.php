@@ -92,4 +92,48 @@ class ItemModel extends ModifiableAbstModel
     {
         return $this->amount;
     }
+
+
+    /**
+     * Set the value of program_id
+     */
+    public function setProgramId($program_id): self
+    {
+        $this->program_id = $program_id;
+
+        return $this;
+    }
+
+
+    /**
+     * Set the value of item_name
+     */
+    public function setItemName($item_name): self
+    {
+        $this->item_name = $item_name;
+
+        return $this;
+    }
+
+
+    /**
+     * Set the value of item_cost
+     */
+    public function setItemCost($item_cost): self
+    {
+        $this->item_cost = $item_cost;
+
+        return $this;
+    }
+
+
+    /**
+     * Set the value of amount
+     */
+    public function setAmount($amount): self
+    {
+        $this->amount = $amount;
+
+        return $this;
+    }
 }

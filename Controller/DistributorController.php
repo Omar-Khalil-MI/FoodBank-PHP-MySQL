@@ -1,4 +1,5 @@
 <?php
+require_once "AuthCheck.php";
 require_once "../Model/DistributorModel.php";
 require_once "../View/DistributorView.php";
 
@@ -54,6 +55,11 @@ class DistributorController
 }
 
 $controller = new DistributorController();
+
+if (!isset($_SESSION))
+    session_start();
+AuthCheck::requireAdminLogin();
+AuthCheck::requireAdminRole('DistributorController');
 
 if (!isset($_GET['cmd']))
     $controller->view_allController();

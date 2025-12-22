@@ -41,6 +41,7 @@ body {
 .form .input-box {
   width: 100%;
   margin-top: 20px;
+  position: relative;
 }
 
 .input-box label {
@@ -129,18 +130,16 @@ body {
 
 .password-toggle-icon {
   position: absolute;
-  top: 65.5%;
-  right: 40px;
+  top: 71.5%;
+  right: 3%;
   transform: translateY(-50%);
   cursor: pointer;
 }
 
 .password-toggle-icon i {
   font-size: 18px;
-  line-height: 1;
   color: #333;
   transition: color 0.3s ease-in-out;
-  margin-bottom: 20px;
 }
 
 .password-toggle-icon i:hover {

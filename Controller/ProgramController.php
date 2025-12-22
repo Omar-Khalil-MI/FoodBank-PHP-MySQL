@@ -1,4 +1,5 @@
 <?php
+require_once "AuthCheck.php";
 require_once "../Model/ProgramModel.php";
 require_once "../View/ProgramView.php";
 require_once "../Model/ItemModel.php";
@@ -64,20 +65,29 @@ class ProgramController
 }
 
 $controller = new ProgramController();
+if (!isset($_SESSION))
+        session_start();
 
-if (!isset($_GET['cmd']))
-    $controller->view_allController();
+if (isset($_GET['cmd']) && $_GET['cmd'] == 'showtouser'){
+    AuthCheck::requireDonorLogin();
+    $controller->show_to_user();
+}
 else {
-    $command = $_GET['cmd'];
+    AuthCheck::requireAdminLogin();
+    // Check if admin role has access to ProgramController
+    AuthCheck::requireAdminRole('ProgramController');
 
-    if ($command == 'edit')
-        $controller->editController();
-    else if ($command == 'add' && $_POST['cmd'] == $command)
-        $controller->addController();
-    else if ($command == 'delete')
-        $controller->deleteController();
+    if (!isset($_GET['cmd']))
+        $controller->view_allController();
+    else {
+        $command = $_GET['cmd'];
 
-    else if ($command == 'showtouser')
-        $controller->show_to_user();
+        if ($command == 'edit')
+            $controller->editController();
+        else if ($command == 'add' && $_POST['cmd'] == $command)
+            $controller->addController();
+        else if ($command == 'delete')
+            $controller->deleteController();
+    }
 }
 $controller->ProgView->PrintFooter();

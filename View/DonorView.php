@@ -131,7 +131,7 @@ class DonorView extends ViewAbst
                     <h1>Donor Database</h1>
                     <nav>
                         <ul>
-                            <a href="../index.php"><li>Dashboard</li></a>
+                            <a href="../Controller/AdminController.php"><li>Dashboard</li></a>
                             <a href="../Controller/DonationController.php"><li>Back</li></a>
                         </ul>
                     </nav>

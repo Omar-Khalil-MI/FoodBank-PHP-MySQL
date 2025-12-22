@@ -97,4 +97,26 @@ class ProgramModel extends ModifiableAbstModel
         $stmt = Singleton::getpdo()->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+
+    /**
+     * Set the value of program_name
+     */
+    public function setProgramName($program_name): self
+    {
+        $this->program_name = $program_name;
+
+        return $this;
+    }
+
+
+    /**
+     * Set the value of description
+     */
+    public function setDescription($description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
 }

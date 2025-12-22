@@ -103,4 +103,28 @@ class DonationDetailsModel extends ModifiableAbstModel
     {
         return $this->Qty;
     }
+
+    /**
+     * Get the value of item_id
+     */
+    public function getItemId()
+    {
+        return $this->item_id;
+    }
+
+    /**
+     * Get the value of price
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * Get the value of donation_id
+     */
+    public function getDonationId()
+    {
+        return $this->donation_id;
+    }
 }

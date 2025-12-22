@@ -1,4 +1,5 @@
 <?php
+require_once "AuthCheck.php";
 require_once "../Model/ItemModel.php";
 require_once "../View/ItemView.php";
 
@@ -60,6 +61,10 @@ class ItemController
 
 $controller = new ItemController();
 
+if (!isset($_SESSION))
+    session_start();
+AuthCheck::requireAdminLogin();
+AuthCheck::requireAdminRole('ItemController');
 if (!isset($_GET['cmd']))
     $controller->view_allController();
 else {

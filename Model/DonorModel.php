@@ -161,4 +161,65 @@ class DonorModel extends ModifiableAbstModel
     {
         return $this->password;
     }
+
+
+    /**
+     * Set the value of gender
+     */
+    public function setGender($gender): self
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of phone_number
+     */
+    public function setPhoneNumber($phone_number): self
+    {
+        $this->phone_number = $phone_number;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of password
+     */
+    public function setPassword($password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of email
+     */
+    public function setEmail($email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of birthdate
+     */
+    public function setBirthdate($birthdate): self
+    {
+        $this->birthdate = $birthdate;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of username
+     */
+    public function setUsername($username): self
+    {
+        $this->username = $username;
+
+        return $this;
+    }
 }

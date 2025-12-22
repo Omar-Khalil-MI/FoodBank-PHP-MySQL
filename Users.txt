@@ -6,3 +6,9 @@ Youssef		youssef_pass
 Ahmed		password123
 Fatma		fatma
 Mohamed		pass
+
+Admins:
+admin       admin
+ware        war123
+prog        prog123
+proc        proc123

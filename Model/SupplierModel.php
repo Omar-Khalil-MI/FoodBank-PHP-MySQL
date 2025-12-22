@@ -66,4 +66,26 @@ class SupplierModel extends ModifiableAbstModel
     {
         return $this->address;
     }
+
+
+    /**
+     * Set the value of address
+     */
+    public function setAddress($address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+
+    /**
+     * Set the value of name
+     */
+    public function setName($name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
 }

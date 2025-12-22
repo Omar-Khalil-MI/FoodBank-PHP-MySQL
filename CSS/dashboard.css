@@ -27,6 +27,21 @@ header {
   text-align: center;
 }
 
+li {
+  display: inline-block;
+  width: auto;
+  cursor: pointer;
+  border-radius: 5rem;
+  margin-top: 1rem;
+  margin-bottom: 0.3rem;
+  margin-right: 0.4rem;
+  font-size: small;
+  padding: 0.2rem 0.7rem;
+  background: rgb(139, 139, 139);
+  color: rgb(245, 245, 245);
+  text-align: center;
+}
+
 footer {
   background-color: #329443;
   color: #fff;
