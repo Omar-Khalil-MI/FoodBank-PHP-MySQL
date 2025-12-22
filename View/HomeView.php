@@ -3,7 +3,7 @@ require_once "ViewAbst.php";
 
 class HomeView extends ViewAbst
 {
-    function ShowHome($logged, $rows, $username = null)
+    function ShowHome($logged, $rows, $username = null, $error = "&nbsp")
     {
         echo ('
             <!DOCTYPE html>
@@ -48,6 +48,10 @@ class HomeView extends ViewAbst
                 </header>
 
                 <div class="container">');
+        if ($error != "&nbsp") {
+            $errorColor = (strpos($error, 'Success') !== false) ? 'green' : 'red';
+            echo ('<p id="error" style="color: ' . $errorColor . '; text-align: center; font-size: 18px; padding: 10px; margin: 10px 0; border: 1px solid ' . $errorColor . '; border-radius: 5px;">' . $error . '</p>');
+        }
         if ($logged)
             echo ('<h1>Welcome Back ' . $username . '!</h1><br/>');
         echo ('

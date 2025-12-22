@@ -1,4 +1,5 @@
 <?php
+require_once "AuthCheck.php";
 require_once "../Model/DonorModel.php";
 require_once "../View/DonorView.php";
 require_once "../Model/DonationDetailsModel.php";
@@ -85,10 +86,12 @@ else {
       $controller->signupValid();
     else $controller->signup();
   } else if ($command == 'myacc') {
-
+    AuthCheck::requireDonorLogin();
     if ($_SERVER["REQUEST_METHOD"] == "POST")
       $controller->updateAccount($_SESSION['user_id']);
     else $controller->myaccount($_SESSION['user_id']);
-  } else if ($command == 'viewdonations')
+  } else if ($command == 'viewdonations') {
+    AuthCheck::requireDonorLogin();
     $controller->view_donations();
+  }
 }

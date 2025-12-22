@@ -41,10 +41,12 @@ class HomeController
             exit();
         } else {
             $stmt = ProgramModel::view_all();
+            $error = ((isset($_SESSION['error'])) ? $_SESSION['error'] : "&nbsp");
             if (isset($_SESSION['user_id']))
-                $this->homeView->ShowHome(true, $stmt, $_SESSION['username']);
+                $this->homeView->ShowHome(true, $stmt, $_SESSION['username'], $error);
             else
-                $this->homeView->ShowHome(false, $stmt);
+                $this->homeView->ShowHome(false, $stmt, null, $error);
+            unset($_SESSION['error']);
         }
         $this->homeView->PrintFooter();
     }

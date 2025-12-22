@@ -1,4 +1,5 @@
 <?php
+require_once "AuthCheck.php";
 require_once "../Model/FawryPay.php";
 require_once "../Model/VisaPay.php";
 require_once "../View/PaymentView.php";
@@ -52,6 +53,11 @@ class PaymentController
         }
     }
 }
+
+if(!isset($_SESSION)) 
+    session_start();
+
+AuthCheck::requireDonorLogin();
 
 $controller = new PaymentController();
 

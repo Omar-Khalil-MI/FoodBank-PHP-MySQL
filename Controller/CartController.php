@@ -1,5 +1,6 @@
 <?php
 require_once "../View/CartView.php";
+require_once "AuthCheck.php";
 session_start();
 
 class CartController
@@ -35,6 +36,11 @@ class CartController
         exit();
     }
 }
+
+if(!isset($_SESSION)) 
+    session_start(); 
+
+AuthCheck::requireDonorLogin();
 
 $controller = new CartController();
 
