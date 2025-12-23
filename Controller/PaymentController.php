@@ -7,6 +7,7 @@ require_once "../Model/DonationModel.php";
 require_once "../Model/DecOther.php";
 require_once "../Model/DecTrans.php";
 require_once "../Model/PaymentModel.php";
+require_once "../Model/PaymentFactory.php";
 
 class PaymentController
 {
@@ -31,27 +32,27 @@ class PaymentController
     }
     public function processPayment()
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['paymentmethod']) && isset($_POST['cost'])) {
-            $paymentMethod = $_POST['paymentmethod'];
-            $amount = $_POST['cost'];
+        if ($_SERVER['REQUEST_METHOD'] === 'POST'
+            && isset($_POST['paymentmethod'], $_POST['cost'])) {
 
-            switch ($paymentMethod) {
-                case 'Fawry':
-                    $FawryPayment = new FawryPay();
-                    $result = $FawryPayment->pay($amount);
-                    break;
-                case 'Visa':
-                    $VisaPayment = new VisaPay();
-                    $result = $VisaPayment->pay($amount);
-                    break;
+            try {
+                $payment = PaymentFactory::create($_POST['paymentmethod']);
+                $result = $payment->pay((float) $_POST['cost']);
+
+                if ($result) {
+                    PaymentModel::addDonation($_POST['paymentmethod']);
+                    header("Location: DonationDetailsController.php?cmd=receipt");
+                    exit();
+                }
+
+                $this->payview->PaymentError(0);
+
+            } catch (Exception $e) {
+                $this->payview->PaymentError(1);
             }
-            if ($result) {
-                PaymentModel::addDonation($paymentMethod);
-                header("Location: DonationDetailsController.php?cmd=receipt");
-                exit();
-            } else $this->payview->PaymentError(0);
         }
     }
+
 }
 
 if(!isset($_SESSION)) 
