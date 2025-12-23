@@ -138,10 +138,9 @@ class DonationsView extends ViewAbst
                             default:
                                 return null;
                         }
-                        
                         return {
-                            start: startDate.toISOString().split("T")[0],
-                            end: endDate.toISOString().split("T")[0]
+                            start: formatLocalDate(startDate),
+                            end: formatLocalDate(endDate)
                         };
                     }
                     
@@ -200,6 +199,14 @@ class DonationsView extends ViewAbst
                         tableRows.forEach(row => row.style.display = "");
                         
                         updateRecordCount();
+                    }
+
+
+                    function formatLocalDate(date) {
+                        const y = date.getFullYear();
+                        const m = String(date.getMonth() + 1).padStart(2, "0");
+                        const d = String(date.getDate()).padStart(2, "0");
+                        return `${y}-${m}-${d}`;
                     }
                     
                     // Initialize page on load
