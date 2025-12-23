@@ -1,6 +1,7 @@
 <?php
 require_once "pdo.php";
 require_once "ModifiableAbstModel.php";
+require_once "NotificationModel.php";
 
 class ItemModel extends ModifiableAbstModel
 {
@@ -50,14 +51,21 @@ class ItemModel extends ModifiableAbstModel
         $sql = "UPDATE " . self::table . " SET program_id = :program_id, item_name = :Iname, item_cost = :cost,
         amount = :amount  WHERE id = :id";
         $stmt = Singleton::getpdo()->prepare($sql);
-        return $stmt->execute([
+        $result = $stmt->execute([
             'id' => $this->id,
             'program_id' => $this->program_id,
             'Iname' => $this->item_name,
             'cost' => $this->item_cost,
             'amount' => $this->amount,
         ]);
+
+        if ($result && $this->amount < 10) {
+            NotificationModel::createLowStockNotifications($this->item_name, $this->amount);
+        }
+
+        return $result;
     }
+
     public static function remove($id)
     {
         $sql = "DELETE FROM " . self::table . " WHERE id = :id";

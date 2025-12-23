@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+.nav-links { 
+    display: flex !important; 
+    align-items: center; 
+    list-style: none; 
+    gap: 20px; 
+    justify-content: flex-end;
+}
+
+.notification-wrapper { 
+    position: relative; 
+    cursor: pointer; 
+    color: white;
+    display: inline-block !important;
+    background: none !important;      
+    padding: 0 !important;            
+    margin: 0 !important;            
+}
+
+.notif-badge { 
+    background: red !important; 
+    color: white !important; 
+    border-radius: 50% !important; 
+    padding: 2px 6px !important; 
+    font-size: 11px !important; 
+    position: absolute; 
+    top: -10px; 
+    right: -10px; 
+    font-family: sans-serif; 
+}
+
+.notif-dropdown { 
+    display: none; 
+    position: absolute; 
+    right: 0; 
+    top: 35px; 
+    background: white !important; 
+    border: 1px solid #ddd !important; 
+    width: 300px; 
+    z-index: 9999; 
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2); 
+    border-radius: 8px !important; 
+    overflow: hidden;
+}
+
+.notif-dropdown ul { 
+    list-style: none !important; 
+    padding: 0 !important; 
+    margin: 0 !important; 
+}
+
+.notif-dropdown li.notif-item { 
+    display: block !important;        
+    width: 100% !important; 
+    background: white !important;     
+    color: #333 !important;         
+    text-align: left !important; 
+    padding: 15px !important; 
+    margin: 0 !important; 
+    border-radius: 0 !important;    
+    border-bottom: 1px solid #eee !important;
+    text-transform: none !important;
+    font-size: 1.4rem !important;
+}
+
+.notif-dropdown li.notif-item:hover {
+    background-color: #f9f9f9 !important;
+}
+
+.notif-actions { 
+    margin-top: 10px; 
+    display: flex; 
+    gap: 15px; 
+    text-decoration: none !important;
+}
+
+.notif-item.is-read {
+    background-color: #f4f4f4 !important;
+}
+.notif-item.is-read span {
+    color: #888 !important;
+    text-decoration: line-through !important;
+}
+
+.notif-link { 
+    color: #007bff !important; 
+    text-decoration: none !important; 
+    font-size: 1.2rem !important; 
+    font-weight: 600;
+    text-transform: uppercase;
+    display: inline-block !important; 
+    background: transparent !important;
+}
+
+.notif-item.is-read .notif-link {
+    text-decoration: none !important;
+}
+
+.empty-notif { 
+    padding: 20px !important; 
+    text-align: center !important; 
+    color: #888 !important; 
+    background: white !important;
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+.show-dropdown { display: block !important; }

@@ -4,7 +4,7 @@ require_once "../Model/ProgramModel.php";
 
 class ItemView extends ViewAbst
 {
-    function ShowItemsTable($rows)
+    function ShowItemsTable($rows, $notifications, $count, $unreadcount)
     {
         echo (' 
             <!DOCTYPE html>
@@ -16,9 +16,10 @@ class ItemView extends ViewAbst
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <link rel="stylesheet" href="../CSS/CRUD.css">
                 <link rel="stylesheet" href="../CSS/popup.css">
+                <link rel="stylesheet" href="../CSS/notif.css">
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
                 <link rel="icon" href="../Resources/logo.ico">
-                <title>Item Database</title>
+                <title>Item Database</title>      
             </head>
             
             <body>
@@ -27,6 +28,18 @@ class ItemView extends ViewAbst
                         const overlay = document.getElementById("popupOverlay"); 
                         overlay.classList.toggle("show"); 
                     } 
+                    function toggleNotifs(event) {
+                        event.stopPropagation();
+                        const dropdown = document.getElementById("notifDropdown");
+                        dropdown.classList.toggle("show-dropdown");
+                    }
+                    // Close dropdown if clicked outside
+                    window.onclick = function(event) {
+                        const dropdown = document.getElementById("notifDropdown");
+                        if (dropdown && !event.target.closest(".notification-wrapper")) {
+                            dropdown.classList.remove("show-dropdown");
+                        }
+                    }
                 </script> 
                 
                 <header>
@@ -35,6 +48,37 @@ class ItemView extends ViewAbst
                         <ul>
                             <a href="../Controller/AdminController.php"><li>Dashboard</li></a>
                             <a href="../Controller/AdminController.php?cmd=logout"><li>Logout</li></a>
+                            <li class="notification-wrapper" onclick="toggleNotifs(event)">
+                                <i class="fa fa-bell fa-lg"></i>
+                                ' . ($unreadcount > 0 ? '<span class="notif-badge">' . $unreadcount . '</span>' : '') . '
+                                <div id="notifDropdown" class="notif-dropdown">
+                                    <ul>');
+                                        if ($count == 0) {
+                                            echo '<li class="empty-notif">No new notifications</li>';
+                                        } else {
+                                            foreach ($notifications as $notif) {
+                                                $readClass = ($notif['is_read'] == 1) ? 'is-read' : '';
+                                                echo ('
+                                                <li class="notif-item ' . $readClass . '">
+                                                    <span>' . htmlspecialchars($notif['message']) . '</span>
+                                                    <div class="notif-actions">');
+                                                        
+                                                        if ($notif['is_read'] == 0) {
+                                                            echo '<a href="NotificationController.php?cmd=read&id=' . $notif['id'] . '" class="notif-link">Mark Read</a>';
+                                                        } else {
+                                                            echo '<a href="NotificationController.php?cmd=unread&id=' . $notif['id'] . '" class="notif-link" style="color: #666 !important;">Unread</a>';
+                                                        }
+                                            
+                                                        echo ('
+                                                        <a href="NotificationController.php?cmd=delete&id=' . $notif['id'] . '" class="notif-link" style="color:red !important;">Delete</a>
+                                                    </div>
+                                                </li>');
+                                            }
+                                        }
+                                    echo ('
+                                    </ul>
+                                </div>
+                            </li>
                         </ul>
                     </nav>
                 </header>
@@ -82,7 +126,7 @@ class ItemView extends ViewAbst
                     <td>' . $row['id'] . '</td>
                     <td>' . ProgramModel::get_ProgramName($row['program_id']) . '</td>
                     <td>' . $row['item_name'] . '</td>
-                    <td>' . $row['item_cost'] . "EGP" . '</td>
+                    <td>' . $row['item_cost'] . " EGP" . '</td>
                     <td>' . $row['amount'] . '</td>
                     <td>
                         <a href="ItemController.php?cmd=edit&id=' . $row['id'] . '" class="btn"> 

@@ -2,6 +2,7 @@
 require_once "AuthCheck.php";
 require_once "../Model/ItemModel.php";
 require_once "../View/ItemView.php";
+require_once "../Model/AdminModel.php";
 
 class ItemController
 {
@@ -33,7 +34,10 @@ class ItemController
     public function view_allController()
     {
         $stmt = ItemModel::view_all();
-        $this->itemView->ShowItemsTable($stmt);
+        $notifications = NotificationModel::getByAdmin($_SESSION['admin_id']);
+        $count = count($notifications);
+        $unreadcount = NotificationModel::getUnreadCount($_SESSION['admin_id']);
+        $this->itemView->ShowItemsTable($stmt, $notifications, $count, $unreadcount);
     }
     public function editController()
     {

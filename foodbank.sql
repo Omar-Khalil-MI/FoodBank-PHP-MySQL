@@ -226,6 +226,22 @@ INSERT INTO `supplier` (`id`, `name`, `address`) VALUES
 (4, 'Al-Hassan and Al-Hus', 'Saad Zaghloul - Tanta'),
 (5, 'Sheikh Al-Mandi', 'Al-Andalus - 5th settelment');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `admin_id` int(10) UNSIGNED NOT NULL,
+  `message` varchar(255) NOT NULL,
+  `is_read` tinyint(1) DEFAULT 0,
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`admin_id`) REFERENCES `admin`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
 -- Indexes for dumped tables
 --
