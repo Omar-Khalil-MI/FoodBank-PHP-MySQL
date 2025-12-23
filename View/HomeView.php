@@ -14,6 +14,7 @@ class HomeView extends ViewAbst
                 <meta http-equiv="X-UA-Compatible" content="IE=edge">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <link rel="stylesheet" href="../CSS/CRUD.css">
+                <link rel="stylesheet" href="../CSS/filter.css">
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
                 <link rel="icon" href="../Resources/logo.ico">
                 <title>Food Bank</title>
@@ -54,16 +55,32 @@ class HomeView extends ViewAbst
         }
         if ($logged)
             echo ('<h1>Welcome Back ' . $username . '!</h1><br/>');
-        echo ('
+        echo ('     
+                    <div class="filter-section">
+                        <h2>Search Programs</h2>
+                        <div class="filter-group">
+                            <div class="filter-item">
+                                <label for="programSearch">Program Name:</label>
+                                <input type="text" id="programSearch" placeholder="Search for a program..." onkeyup="applySearch()">
+                            </div>
+                        </div>
+                        <div class="filter-buttons">
+                            <button class="filter-btn" onclick="applySearch()">Search</button>
+                            <button class="filter-btn reset" onclick="resetSearch()">Clear</button>
+                        </div>
+                        <div class="filter-info">
+                            Showing <span id="recordCount">0</span> programs
+                        </div>
+                    </div>
                     <div class="object-display">
-                        <table class="object-display-table">
+                        <table class="object-display-table" id="programTable">
                             <thead><tr>
                                 <th nowrap>Program Name</th>
                                 <th>Description</th>'
         );
         if ($logged)
             echo ('<th>Action</th>');
-        echo ('</tr></thead>');
+        echo ('</tr></thead><tbody>'); // Added <tbody> for cleaner JS selection
         foreach ($rows as $row) {
             echo ('
                             <tr>
@@ -74,6 +91,44 @@ class HomeView extends ViewAbst
                 echo ('<td><a class="btn" href="ProgramController.php?cmd=showtouser&id=' . $row['hash'] . '">Donate</a></td>');
             echo ("</tr>");
         }
+        echo ('
+                        </tbody></table>
+                    </div>
+                </div>
+
+                <script>
+                    function applySearch() {
+                        const query = document.getElementById("programSearch").value.toLowerCase();
+                        const rows = document.querySelectorAll("#programTable tbody tr");
+                        let visibleCount = 0;
+
+                        rows.forEach(row => {
+                            const programName = row.cells[0].textContent.toLowerCase();
+                            if (programName.includes(query)) {
+                                row.style.display = "";
+                                visibleCount++;
+                            } else {
+                                row.style.display = "none";
+                            }
+                        });
+                        document.getElementById("recordCount").textContent = visibleCount;
+                    }
+
+                    function resetSearch() {
+                        document.getElementById("programSearch").value = "";
+                        const rows = document.querySelectorAll("#programTable tbody tr");
+                        rows.forEach(row => row.style.display = "");
+                        document.getElementById("recordCount").textContent = rows.length;
+                    }
+
+                    window.addEventListener("DOMContentLoaded", () => {
+                        const rows = document.querySelectorAll("#programTable tbody tr");
+                        document.getElementById("recordCount").textContent = rows.length;
+                    });
+                </script>
+            </body>
+            </html>
+        ');
     }
     function ShowLogin($error)
     {
