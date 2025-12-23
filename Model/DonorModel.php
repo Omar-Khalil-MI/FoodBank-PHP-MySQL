@@ -137,6 +137,58 @@ class DonorModel extends ModifiableAbstModel
         }
         return 0;
     }
+    public static function saveResetToken($email, $token, $expiry)
+{
+    $pdo = Singleton::getpdo();
+
+    // Check if the email exists
+    $stmt = $pdo->prepare("SELECT id FROM donor WHERE email = ?");
+    $stmt->execute([$email]);
+    $donor = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$donor) {
+        // Email does not exist
+        return false;
+    }
+
+    // Update the reset token and expiry
+    $updateStmt = $pdo->prepare(
+        "UPDATE donor SET reset_token = ?, reset_token_expiry = ? WHERE email = ?"
+    );
+
+    $success = $updateStmt->execute([$token, $expiry, $email]);
+
+    return $success;
+}
+
+public static function findByResetToken($token)
+{
+    $stmt = Singleton::getpdo()->prepare(
+        "SELECT * FROM donor WHERE reset_token = ? AND reset_token_expiry > UTC_TIMESTAMP()"
+    );
+    $stmt->execute([$token]);
+    return $stmt->fetch();
+}
+public static function updatePassword($id, $password)
+{
+    $stmt = Singleton::getpdo()->prepare(
+        "UPDATE donor 
+         SET password = ?, reset_token = NULL, reset_token_expiry = NULL
+         WHERE id = ?"
+    );
+    return $stmt->execute([$password, $id]);
+}
+public static function clearResetToken($donorId) {
+    $stmt = Singleton::getpdo()->prepare("UPDATE donor SET reset_token = NULL, reset_token_expiry = NULL WHERE id = :id");
+    return $stmt->execute([':id' => $donorId]);
+}
+public static function findByEmail($email)
+{
+    $stmt = Singleton::getpdo()->prepare("SELECT * FROM donor WHERE email = ?");
+    $stmt->execute([$email]);
+    return $stmt->fetch(); // Returns the donor record as associative array, or false if not found
+}
+
     public function getUserName()
     {
         return $this->username;

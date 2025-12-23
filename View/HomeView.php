@@ -176,6 +176,8 @@ class HomeView extends ViewAbst
                         <a class="cancel-btn" href="../Controller/HomeController.php">Cancel</a>
                         <p class="login-link">First Time?
                             <a class="btn" href="../Controller/DonorController.php?cmd=signup">Sign Up</a>
+                            <a href="../Controller/HomeController.php?cmd=forgot">Forgot password?</a>
+
                         </p>
                     </form>
                 </section>
