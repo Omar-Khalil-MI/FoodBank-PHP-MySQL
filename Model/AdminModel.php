@@ -5,13 +5,16 @@ class AdminModel
 {
     const table = "admin";
     private $username;
+    private $email;
+
     private $password;
     private $role;
     private $id;
 
-    public function __construct($username = "", $password = "", $role = "admin", $id = 0)
+    public function __construct($username = "",$email ="", $password = "", $role = "admin", $id = 0)
     {
         $this->username = $username;
+        $this->email = $email;
         $this->password = $password;
         $this->role = $role;
         $this->id = $id;
@@ -44,6 +47,49 @@ class AdminModel
         }
         return 0; // Login failed
     }
+   public static function findByEmail($email)
+{
+    $stmt = Singleton::getpdo()->prepare("SELECT * FROM admin WHERE email = ?");
+    $stmt->execute([$email]);
+    return $stmt->fetch(); // Returns the admin record as associative array, or false if not found
+}
+
+    public static function saveResetToken($email, $token, $expiry) {
+    $pdo = Singleton::getpdo();
+
+    // 1. Check if email exists
+    $stmtCheck = $pdo->prepare("SELECT id FROM admin WHERE email = ?");
+    $stmtCheck->execute([$email]);
+    $admin = $stmtCheck->fetch();
+
+    if (!$admin) {
+        // Email does not exist
+        return false;
+    }
+
+    // 2. Save the token
+    $stmtUpdate = $pdo->prepare("UPDATE admin SET reset_token = ?, reset_token_expiry = ? WHERE email = ?");
+    return $stmtUpdate->execute([$token, $expiry, $email]);
+}
+
+
+public static function findByResetToken($token) {
+    $stmt = Singleton::getpdo()->prepare(
+        "SELECT * FROM admin WHERE reset_token = ? AND reset_token_expiry > UTC_TIMESTAMP()"
+    );
+    $stmt->execute([$token]);
+    return $stmt->fetch();
+}
+
+public static function updatePassword($id, $password) {
+    $stmt = Singleton::getpdo()->prepare("UPDATE admin SET password = ? WHERE id = ?");
+    return $stmt->execute([$password, $id]);
+}
+
+public static function clearResetToken($id) {
+    $stmt = Singleton::getpdo()->prepare("UPDATE admin SET reset_token = NULL, reset_token_expiry = NULL WHERE id = ?");
+    return $stmt->execute([$id]);
+}
 
     /**
      * Get the value of id

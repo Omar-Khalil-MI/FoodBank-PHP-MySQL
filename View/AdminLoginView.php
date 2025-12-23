@@ -36,6 +36,7 @@ class AdminLoginView extends ViewAbst
                             <input type="text" pattern="^[^\s]+$" id="username" name="username" 
                                 placeholder="Enter admin username" required>
                         </div>
+                        
 
                         <div class = "input-box">
                             <label>Password:</label>
@@ -46,6 +47,7 @@ class AdminLoginView extends ViewAbst
                         
                         <button>Login</button>
                         <a class="cancel-btn" href="../Controller/AdminController.php">Cancel</a>
+                        <a href="../Controller/AdminController.php?cmd=forgot">Forgot password?</a>
                     </form>
                 </section>
                 
