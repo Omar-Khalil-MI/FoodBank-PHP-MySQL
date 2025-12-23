@@ -28,21 +28,23 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `username` varchar(128) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `password` varchar(128) NOT NULL,
-  `role` varchar(50) NOT NULL DEFAULT 'admin'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `role` varchar(50) NOT NULL DEFAULT 'admin',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `admin`
 --
-
-INSERT INTO `admin` (`id`, `username`, `password`, `role`) VALUES
-(1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin'),
-(2, 'ware', '9c9b056bc0c11c3fb0d74085188e2499ec7e8c18', 'warehouse'),
-(3, 'prog', '7abf1cbd0bb673b82b54ad0a008667d99058c734', 'program'),
-(4, 'proc', 'fb0aff6ba5e1940db2ce5fd06d988760aa10ffe4', 'procurement');
+INSERT INTO `admin` (`username`, `email`, `password`, `role`) VALUES
+('admin', 'alaay318@gmail.com', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin'),
+('ware',  'warehouse@foodbank.com', '9c9b056bc0c11c3fb0d74085188e2499ec7e8c18', 'warehouse'),
+('prog',  'program@foodbank.com', '7abf1cbd0bb673b82b54ad0a008667d99058c734', 'program'),
+('proc',  'procurement@foodbank.com', 'fb0aff6ba5e1940db2ce5fd06d988760aa10ffe4', 'procurement');
 
 -- --------------------------------------------------------
 
@@ -249,8 +251,8 @@ CREATE TABLE `notifications` (
 --
 -- Indexes for table `admin`
 --
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id`);
+-- ALTER TABLE `admin`
+--   ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `distributor`
@@ -299,14 +301,25 @@ ALTER TABLE `supplier`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Add RESET TOKENS AND EXPIRY FOR DONOR AND ADMIN
+--
+ALTER TABLE `admin`
+ADD reset_token VARCHAR(64),
+ADD reset_token_expiry DATETIME;
+
+ALTER TABLE `donor`
+ADD reset_token VARCHAR(64),  
+ADD reset_token_expiry DATETIME;
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
 -- AUTO_INCREMENT for table `admin`
 --
-ALTER TABLE `admin`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+-- ALTER TABLE `admin`
+--   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `distributor`

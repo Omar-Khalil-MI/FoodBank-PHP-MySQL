@@ -8,7 +8,7 @@ Fatma		fatma
 Mohamed		pass
 
 Admins:
-admin       admin
+admin       alaayasser
 ware        war123
 prog        prog123
 proc        proc123
