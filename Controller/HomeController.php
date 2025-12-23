@@ -53,7 +53,8 @@ class HomeController
 }
 
 
-session_start();
+if (!isset($_SESSION))
+    session_start();
 $controller = new HomeController();
 if (!isset($_GET['cmd'])) {
     $controller->home();

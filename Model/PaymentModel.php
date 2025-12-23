@@ -19,7 +19,8 @@ class PaymentModel
     }
     static function addDonation($paymentMethod)
     {
-        session_start();
+        if (!isset($_SESSION))
+            session_start();
         $cost = $_POST['cost'];
         $donationModel = new DonationModel($_SESSION['user_id'], $cost, date('y-m-d'), $paymentMethod);
         $donationModel->add();

@@ -121,13 +121,13 @@ class AdminLoginView extends ViewAbst
                         <img src="../Resources/warehouse.jpg" alt="Warehouse Coordinator">
                         <a href="../Controller/ItemController.php">Warehouse Coordinator</a>
                     </div>
-                    <div class="role">
-                        <img src="../Resources/proc.jpg" alt="Procurement Coordinator">
-                        <a href="avascript:void(0)" onclick="togglePopup() ">Procurement Coordinator</a>
-                    </div>
                 </div>
 
                 <div class="row">
+                    <div class="role">
+                        <img src="../Resources/proc.jpg" alt="Procurement Coordinator">
+                        <a href="javascript:void(0)" onclick="togglePopup()">Procurement Coordinator</a>
+                    </div>    
                     <div class="role">
                         <img src="../Resources/ceo.png" alt="Executive Director">
                         <a href="../Controller/DonationController.php">Executive Director</a>

@@ -14,7 +14,8 @@ class DonationDetailsController
     }
     function receiptController()
     {
-        session_start();
+        if (!isset($_SESSION))
+            session_start();
         $donationkey = $_SESSION['donationkey'];
         $donationDetailsView = new DonationDetailsView();
         $donation = new DonationModel();

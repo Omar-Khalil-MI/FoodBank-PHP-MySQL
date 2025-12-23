@@ -74,7 +74,8 @@ class DonorController
 }
 
 $controller = new DonorController();
-session_start();
+if (!isset($_SESSION))
+  session_start();
 
 if (!isset($_GET['cmd']))
   $controller->viewAll();

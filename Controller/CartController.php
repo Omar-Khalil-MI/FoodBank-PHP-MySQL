@@ -1,7 +1,6 @@
 <?php
 require_once "../View/CartView.php";
 require_once "AuthCheck.php";
-session_start();
 
 class CartController
 {
@@ -16,7 +15,8 @@ class CartController
     }
     public function addToCartController()
     {
-        session_start();
+        if (!isset($_SESSION))
+            session_start();
         if (empty($_SESSION['cart']))
             $_SESSION['cart'] = array();
         $_SESSION['cart'][$_POST['item']] = $_POST['quantity'];

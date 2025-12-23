@@ -1,6 +1,7 @@
 <?php
 require_once "pdo.php";
 require_once "ModifiableAbstModel.php";
+require_once "ItemModel.php";
 
 class DonationDetailsModel extends ModifiableAbstModel
 {
@@ -22,6 +23,11 @@ class DonationDetailsModel extends ModifiableAbstModel
         $sql = "INSERT INTO " . self::table . " (donation_id, item_id, Qty, price) 
         VALUES (:donation, :item, :qty, :price)";
         $stmt = Singleton::getpdo()->prepare($sql);
+        $item = new ItemModel();
+        $item->setId($this->item_id);
+        $item->read();
+        $item->setAmount($item->getAmount() - $this->Qty);
+        $item->edit();
         return $stmt->execute(array(
             ':donation' => $this->donation_id,
             ':item' => $this->item_id,

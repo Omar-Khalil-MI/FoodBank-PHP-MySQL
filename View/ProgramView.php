@@ -143,8 +143,6 @@ class ProgramView extends ViewAbst
     }
     function ShowProgramToUser($program, $stmt)
     {
-        // if (!isset($_SESSION))
-        //     session_start();
         echo ('
             <html lang="en">
             
@@ -191,7 +189,7 @@ class ProgramView extends ViewAbst
         echo ('
                                 </select> 
                                 <label>Amount: </label>
-                                <input type="number" id="quantity" min="1" name="quantity" value=1 required> 
+                                <input type="number" id="quantity" min="1" max="' . $ItemModel->getAmount() .'" name="quantity" value=1 required> 
                                 <input type="hidden" name="program_name" value="' . $program->getProgramName() . '">
                                 <input type="hidden" name="program_id" value="' . md5($program->getId()) . '">
                                 <input type="submit" class="btn" value="Add to Cart">

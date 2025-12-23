@@ -5,7 +5,8 @@ class PaymentView extends ViewAbst
 {
     function ShowPaymentOptions($cost)
     {
-        session_start();
+        if (!isset($_SESSION))
+            session_start();
         echo ('
             <!DOCTYPE html>
             <html lang="en">

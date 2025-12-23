@@ -45,7 +45,8 @@ class AdminController
     }
 }
 
-session_start();
+if (!isset($_SESSION))
+    session_start();
 $controller = new AdminController();
 
 if (!isset($_GET['cmd'])) {
