@@ -3,6 +3,9 @@ require_once "pdo.php";
 
 class NotificationModel {
     private $id;
+    private $admin_id;
+    private $message;
+    private $is_read;
 
     public function __construct($id = 0) {
         $this->id = $id;
@@ -48,5 +51,37 @@ class NotificationModel {
         foreach ($admins as $admin) {
             $notifStmt->execute(['aid' => $admin['id'], 'msg' => $msg]);
         }
+    }
+
+    public function setId($id) {
+        $this->id = $id;
+    }
+
+    public function getId() {
+        return $this->id;
+    }
+
+    public function setAdminId($admin_id) {
+        $this->admin_id = $admin_id;
+    }
+
+    public function getAdminId() {
+        return $this->admin_id;
+    }
+
+    public function setMessage($message) {
+        $this->message = $message;
+    }
+
+    public function getMessage() {
+        return $this->message;
+    }
+
+    public function setIsRead($is_read) {
+        $this->is_read = $is_read;
+    }
+
+    public function getIsRead() {
+        return $this->is_read;
     }
 }

@@ -10,6 +10,7 @@ use PHPMailer\PHPMailer\Exception;
 require '../vendor/autoload.php'; // make sure PHPMailer is installed via Composer
 
 
+
 class HomeController
 {
     public $homeView;
