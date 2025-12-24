@@ -65,6 +65,9 @@ class DonationsView extends ViewAbst
                             Showing <span id="recordCount">0</span> records
                         </div>
                     </div>
+                    <div>
+                        <h2>Total Donation Income: <span id="totalAmount">0</span> EGP</h2>
+                    </div>
                     <div class="object-display">
                         <table class="object-display-table" id="donationTable">
                             <thead>
@@ -178,6 +181,7 @@ class DonationsView extends ViewAbst
                         });
                         
                         updateRecordCount();
+                        updateVisibleTotal();
                     }
                     
                     // Update record count display
@@ -199,6 +203,7 @@ class DonationsView extends ViewAbst
                         tableRows.forEach(row => row.style.display = "");
                         
                         updateRecordCount();
+                        updateVisibleTotal();
                     }
 
 
@@ -208,9 +213,28 @@ class DonationsView extends ViewAbst
                         const d = String(date.getDate()).padStart(2, "0");
                         return `${y}-${m}-${d}`;
                     }
+
+                    function updateVisibleTotal() {
+                        const rows = document.querySelectorAll("#donationTable tbody tr");
+                        let total = 0;
+
+                        rows.forEach(row => {
+                            if (row.style.display !== "none") {
+                                // Amount is in column index 2: "150EGP"
+                                const amountText = row.cells[2].textContent.trim();
+                                const amount = parseFloat(amountText.replace("EGP", "").trim());
+                                total += amount;
+                            }
+                        });
+
+                        document.getElementById("totalAmount").textContent = total.toFixed(2);
+                    }
                     
                     // Initialize page on load
-                    window.addEventListener("load", initializePage);
+                    window.addEventListener("load", () => {
+                        updateRecordCount();
+                        updateVisibleTotal();
+                    });
                 </script>
             </body>
             </html>
